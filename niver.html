@@ -271,6 +271,7 @@ h3 {
   text-shadow: 1px 2px 15px black;
   display: flex;
   cursor: pointer;
+  margin-bottom: 20px;
   
 }
 
@@ -504,8 +505,8 @@ h3 {
     addLetterClick('y', 'Y');
     addLetterClick('a2', 'A');
 
-
-
+    
+    
 
     const res = document.getElementById('res')
     function resposta(){
@@ -520,6 +521,7 @@ h3 {
                         <p class="l">L -> Love</p>
                         <p class="y">Y -> You </p>
                         <p class="a2">A -> Anã </p>
+                        <p style="font-size: 35px; text-align: justify;">Coloque as senhas abaixo, em cada senha você conseguirá uma letra para a palavra final. No final junte as letras corretas formando assim a palavra final.</p>
                         
                       `
       res.innerHTML += ` <div class="meio">
@@ -579,7 +581,8 @@ h3 {
 
   </div>
 
-    <div  id="senhares7"></div>`
+    <div  id="senhares7"></div>
+    `
 
     prepararCampos()
     }
