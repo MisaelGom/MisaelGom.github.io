@@ -1,0 +1,105 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'love';
+  src: url(fontes/Valentine\ Cute.ttf);
+}
+
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg); /* centraliza e rotaciona */
+  animation: colorChange 2s infinite alternate;
+}
+    
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    @keyframes colorChange {
+      0% { background:#6EC1E4; }
+      25% { background: #0077B6; }
+      50% { background: #8E44AD; }
+      75% { background: #C0392B; }
+      100% { background: #555555; }
+    }
+
+.heart1 {
+  width: 250px;
+  height: 250px;
+  animation-delay: 0s;
+}
+
+.heart1::before,
+.heart1::after {
+  width: 250px;
+  height: 250px;
+  background: inherit;
+  content: "";
+  position: absolute;
+}
+
+.heart1::before {
+  top: -125px;
+  left: 0;
+}
+
+.heart1::after {
+  left: 125px;
+  top: 0;
+}
+
+.heart2 {
+  width: 200px;
+  height: 200px;
+  animation-delay: 0.3s;
+}
+
+.heart2::before,
+.heart2::after {
+  width: 200px;
+  height: 200px;
+  background: inherit;
+  content: "";
+  position: absolute;
+}
+
+.heart2::before {
+  top: -100px;
+  left: 0;
+}
+
+.heart2::after {
+  left: 100px;
+  top: 0;
+}
+
+.heart3 {
+  width: 150px;
+  height: 150px;
+  animation-delay: 0.6s;
+}
+
+.heart3::before,
+.heart3::after {
+  width: 150px;
+  height: 150px;
+  background: inherit;
+  content: "";
+  position: absolute;
+}
+
+.heart3::before {
+  top: -75px;
+  left: 0;
+}
+
+.heart3::after {
+  left: 75px;
+  top: 0;
+}

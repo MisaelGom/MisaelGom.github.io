@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Seleção única por quadrado - corrigido</title>
+  <link rel="stylesheet" href="coracao.css">
+  <style>
+
+    @font-face {
+  font-family: 'love';
+  src: url(fontes/Valentine\ Cute.ttf);
+}
+
+
+
+    body {
+      background: #f5f5dc;
+      margin: 2px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      margin: auto;
+      align-items: center; 
+    }
+    
+    .box {
+      position: relative;
+      width: 75px;
+      min-height: 75px;
+      background: rgb(139, 139, 139);
+      border: 1px solid #aaa;
+      cursor: pointer;
+      font-size: 50px;
+      font-weight: 900;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+
+      user-select: none;
+      overflow: hidden;
+      color: whitesmoke;
+      border-radius: 20%;
+
+
+    }
+
+    #nome{
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin: 10px auto 10px 20px;
+      justify-content: center;
+      
+    }
+    
+    /* Container principal que ocupa a tela toda */
+.coracoes2 {
+  width: 95%;
+  height: 1000px;
+  position: relative
+;}
+
+/* Container dos corações */
+.coracoes1 {
+  gap: 20px; /* espaço entre os corações */
+
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+    #resposta{
+      font-size: 500%;
+      color: #A33B39;
+      font-weight: 800;
+    }
+
+    .f, .r, .a, .n, .c, .e, .l, .y, .a2{
+      height: fit-content;
+      font-weight: bold;
+
+      font-size: 50px;
+      font-weight: 900;
+    }
+    .f{
+      color: #6EC1E4;
+    }
+    
+    .r{
+      color: #0077B6;
+    }
+
+    .a{
+      color: #0c00b6;
+    }
+    
+    .n{
+      color: #8E44AD;
+    }
+    .c{
+      color: #dd50d6;
+    }
+    .e{
+      color: #C0392B;
+    }
+    .l{
+      color: #c0622b 
+    }
+    .y{
+      color: #ebd82c;
+    }
+    .a2{
+      color: #92eb2c;
+    }
+
+    #res{
+      padding: 5px;
+    }
+
+    h1{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 60px;
+      text-align: center;
+      color: red;
+      text-shadow: 1px 2px 15px rgba(107, 0, 0, 0.356);
+      padding-top: 20%;
+    }
+
+
+
+     .mensagens{
+      background-color: white;
+      width: 92%;
+      margin: auto;
+      padding: 15px;
+      border: 1px solid rgba(128, 128, 128, 0.479);
+      border-radius: 12.5px;
+      line-height: 1.5em;
+      box-shadow: 2px 3px 7px rgba(0, 0, 0, 0.356);
+    }
+    .meio{
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .senha{
+      border-radius: 15px 0px 0px 15px;
+      text-align: center;
+      box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.349) ;
+      font-weight: 900;
+      width: 350px;
+      height: 70px;
+      font-size: 40px;
+    }
+    .senhares{
+      box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.13);
+      background-color: rgb(60, 255, 60);
+      border: 1px datted rgba(255, 255, 255, 0.404);
+      border-radius: 0 15px 15px 0;
+      transform: translate(-70%);
+      height: 70px;
+    }
+    .senha:focus{
+      outline: none;
+    }
+
+    .senhares:hover{
+      background-color: rgb(40, 185, 40);
+    }
+   
+    input::placeholder {
+      color: gray;
+      font-style: italic;
+      opacity: 0.8;
+      text-align: center;
+      font-weight: 400;
+      font-size: 40px;
+      
+    }
+
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+ .letra-input {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+.letra-input input {
+  width: 80px;
+  height: 80px;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+}
+
+.teclado {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f1f1f1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column; /* faz ficar vertical */
+  align-items: center;
+  margin-top: 5px;
+}
+
+.teclado button {
+  width: 75px;
+  height: 75px;
+  margin: 2px 0;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.mensagens h2,
+.senhares h2 {
+  font-family: 'love';
+  font-size: 50px;
+  text-align: center;
+  color: #C0392B;
+  height: max-content;
+  margin: 10px , auto;
+  line-height: normal;
+}
+h3 {
+  font-family: 'love';
+  font-size: 45px;
+  color: #0c00b6;
+  margin: 5x auto;
+}
+.mensagens p,
+.senhares p {
+  font-size: 40px;
+  line-height: 1.5em;
+  text-align: justify;
+  
+}
+
+#nomefinal{
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#FIM{
+  background-color: rgb(67, 255, 9);
+  height: 50px;
+  width: 200px;
+  border-radius: 50px;
+  margin: auto;
+  border: 1px solid green;
+  color: #A33B39;
+  text-shadow: 1px 2px 15px black;
+  display: flex;
+  cursor: pointer;
+  
+}
+
+    </style>
+
+</head>
+<body>
+
+
+  <div class="container" ></div>
+    <h1>
+      Descubra abaixo o nome de uma pessoa muito especial!
+    </h1>
+    
+    <div class="coracoes2">
+      <div class="coracoes1">
+        
+          <div class="heart heart1"></div>
+          <div class="heart heart2"></div>
+          <div class="heart heart3"></div>
+      </div>
+    </div>
+    <div id="nome">
+     
+        <div class="box" id="f"></div>
+        <div class="box" id="r" ></div>
+        <div class="box" id="a" ></div>
+        <div class="box" id="n" ></div>
+        <div class="box" id="c" ></div>
+        <div class="box" id="e" ></div>
+        <div class="box" id="l" ></div>
+        <div class="box" id="y" ></div>
+        <div class="box" id="a2" name="botao" onclick="resposta()" ></div>
+
+        
+        
+    </div>
+        
+
+      <div id="res1"></div>
+
+      <div id="res"></div>
+            <div id="final"></div>
+    </div>
+    
+
+    <script>
+
+  function mostrarTeclado(container) {
+    // Fecha outros teclados
+    document.querySelectorAll('.teclado').forEach(t => t.style.display = 'none');
+
+    // Abre o teclado do input clicado
+    const teclado = container.querySelector('.teclado');
+    teclado.style.display = 'block';
+  }
+
+  function selecionarLetra(botao, letra) {
+    const container = botao.closest('.letra-input');
+    const input = container.querySelector('input');
+    input.value = letra;
+
+    // Oculta o teclado após seleção
+    container.querySelector('.teclado').style.display = 'none';
+  }
+
+  // Fecha teclado ao clicar fora
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.letra-input')) {
+      document.querySelectorAll('.teclado').forEach(t => t.style.display = 'none');
+    }
+  });
+
+
+
+
+      let contgeral = 0;
+      const key1 = "24012024";
+      const key2 = "01042024";
+      const key3 = "03062024";
+      const key4 = "08062024";
+      const key5 = "12062024";
+      const key6 = "25072025";
+      const key7 = "07082024";
+      let senha = [];
+      let senhares =[];
+      function prepararCampos() {
+  
+      for (let i = 1; i <= 7; i++) {
+      senha[i] = document.getElementById(`senha${i}`);
+      senhares[i] = document.getElementById(`senhares${i}`);
+      }
+    }
+      
+    function addLetterClick(id, letter) {
+      const el = document.getElementById(id);
+      let filled = false;
+      el.addEventListener('click', () => {
+        if (!filled) {
+          el.textContent = letter;
+          filled = true;
+        }
+      });
+    }
+
+    function fim(){
+       final.innerHTML += `
+       <div class="mensagens">
+         <h2>Chegamos no fim por aqui!</h2>
+         <p style="padding-bottom:15px; margin-bottom:15px; font-size:30px; text-align: justify;">Espero que você tenha gostado, meu bem, é algo bem simples, mas quis fazer para tentar fazer algo diferente, sair um pouco do mais do mesmo, e também usar o conhecimento que ando estudando para montar isto. <br>
+          Não ironicamente agora que fui ver que uma das senhas se assemelham com a senha final, não há coincidências, mas realmente fiquei surpreso agora.
+          <br>
+          A senha final é <STRONG>07082022</STRONG>.
+          <br>
+          Agora você deve enviá-la para mim, vejamos o que ainda tem por aí.</p>
+       </div>`
+    }
+
+    function contadorgeral(){
+      contgeral += 1;
+       if (contgeral == 7){
+      console.log(`Concluido`)
+      var final = document.getElementById(`final`)
+      final.innerHTML += `
+       <div id="nomefinal">
+         <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'V')">N</button>
+             <button onclick="selecionarLetra(this, 'V')">A</button>
+             <button onclick="selecionarLetra(this, 'V')">L</button>
+             <button onclick="selecionarLetra(this, 'V')">C</button>
+             <button onclick="selecionarLetra(this, 'V')">E</button>
+             <button onclick="selecionarLetra(this, 'V')">V</button>
+         
+           </div>
+         </div>
+         
+          <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'A')">N</button>
+             <button onclick="selecionarLetra(this, 'A')">A</button>
+             <button onclick="selecionarLetra(this, 'A')">L</button>
+             <button onclick="selecionarLetra(this, 'A')">C</button>
+             <button onclick="selecionarLetra(this, 'A')">E</button>
+             <button onclick="selecionarLetra(this, 'A')">V</button>
+         
+           </div>
+         </div>
+         
+         <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'L')">N</button>
+             <button onclick="selecionarLetra(this, 'L')">A</button>
+             <button onclick="selecionarLetra(this, 'L')">L</button>
+             <button onclick="selecionarLetra(this, 'L')">C</button>
+             <button onclick="selecionarLetra(this, 'L')">E</button>
+             <button onclick="selecionarLetra(this, 'L')">V</button>
+         
+           </div>
+         </div>
+         
+         <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'E')">N</button>
+             <button onclick="selecionarLetra(this, 'E')">A</button>
+             <button onclick="selecionarLetra(this, 'E')">L</button>
+             <button onclick="selecionarLetra(this, 'E')">C</button>
+             <button onclick="selecionarLetra(this, 'E')">E</button>
+             <button onclick="selecionarLetra(this, 'E')">V</button>
+         
+           </div>
+         </div>
+         
+         <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'N')">N</button>
+             <button onclick="selecionarLetra(this, 'N')">A</button>
+             <button onclick="selecionarLetra(this, 'N')">L</button>
+             <button onclick="selecionarLetra(this, 'N')">C</button>
+             <button onclick="selecionarLetra(this, 'N')">E</button>
+             <button onclick="selecionarLetra(this, 'N')">V</button>
+         
+           </div>
+         </div>
+         
+         <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'C')">N</button>
+             <button onclick="selecionarLetra(this, 'C')">A</button>
+             <button onclick="selecionarLetra(this, 'C')">L</button>
+             <button onclick="selecionarLetra(this, 'C')">C</button>
+             <button onclick="selecionarLetra(this, 'C')">E</button>
+             <button onclick="selecionarLetra(this, 'C')">V</button>
+         
+           </div>
+         </div>
+         
+         <div class="letra-input" onclick="mostrarTeclado(this)">
+           <input type="text" readonly maxlength="1" value="" autocomplete="off">
+           <div class="teclado" style="display: none;">
+             <button onclick="selecionarLetra(this, 'E')">N</button>
+             <button onclick="selecionarLetra(this, 'E')">A</button>
+             <button onclick="selecionarLetra(this, 'E')">L</button>
+             <button onclick="selecionarLetra(this, 'E')">C</button>
+             <button onclick="selecionarLetra(this, 'E')">E</button>
+             <button onclick="selecionarLetra(this, 'E')">V</button>
+         
+           </div>
+         </div>
+       </div>`
+       final.innerHTML += `    <button id="FIM" onclick="fim()"></button>
+`
+     
+      }
+    }
+
+
+    addLetterClick('f', 'F');
+    addLetterClick('r', 'R');
+    addLetterClick('a', 'A');
+    addLetterClick('n', 'N');
+    addLetterClick('c', 'C');
+    addLetterClick('e', 'É');
+    addLetterClick('l', 'L');
+    addLetterClick('y', 'Y');
+    addLetterClick('a2', 'A');
+
+
+
+
+    const res = document.getElementById('res')
+    function resposta(){
+      res.innerHTML = '<p id="resposta"> Feliz aniversário, meu amor ;]</p>'
+      res.innerHTML += `  
+                        <p class="f">F -> Fofa</p>
+                        <p class="r">R -> Romântica</p>
+                        <p class="a">A -> Atraente</p>
+                        <p class="n">N -> Nobre </p>
+                        <p class="c">C -> Carinhosa</p>
+                        <p class="e">É -> Espetacular</p>
+                        <p class="l">L -> Love</p>
+                        <p class="y">Y -> You </p>
+                        <p class="a2">A -> Anã </p>
+                        
+                      `
+      res.innerHTML += ` <div class="meio">
+
+    <input type="text" name="v" class="senha" id="senha1" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8" >
+    <input type="button" class="senhares" id="enviar1"  value="   &#10004;   " onclick="validar1()">
+
+  </div>
+
+    <div  id="senhares1"></div>`
+      res.innerHTML += `<div class="meio">
+    
+    <input type="text" name="a" class="senha" id="senha2" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8">
+    <input type="button" class="senhares" id="enviar2" min="0" max="99999999" value="   &#10004;   " onclick="validar2()">
+
+
+  </div>
+
+    <div  id="senhares2"></div>`
+      res.innerHTML += `<div class="meio">
+    
+    <input type="text" name="l" class="senha" id="senha3" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8">
+    <input type="button" class="senhares" id="enviar3" min="0" max="99999999" value="   &#10004;   " onclick="validar3()">
+
+  </div>
+
+    <div  id="senhares3"></div>
+`
+      res.innerHTML += `<div class="meio">
+    
+    <input type="text" name="e" class="senha" id="senha4" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8">
+    <input type="button" class="senhares" id="enviar4" min="0" max="99999999" value="   &#10004;   " onclick="validar4()">
+
+  </div>
+
+    <div  id="senhares4"></div>`
+      res.innerHTML += `<div class="meio">
+    
+    <input type="text" name="n" class="senha" id="senha5" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8">
+    <input type="button" class="senhares" id="enviar5" min="0" max="99999999" value="   &#10004;   " onclick="validar5()">
+
+  </div>
+
+    <div  id="senhares5"></div>` 
+      res.innerHTML += `<div class="meio">
+    
+    <input type="text" name="c" class="senha" id="senha6" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8">
+    <input type="button" class="senhares" id="enviar6" min="0" max="99999999" value="   &#10004;   " onclick="validar6()">
+
+  </div>
+
+    <div  id="senhares6"></div>`
+      res.innerHTML += `<div class="meio">
+      
+      <input type="text" name="e" class="senha" id="senha7" placeholder="Digite a senha" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="8">
+      <input type="button" class="senhares" id="enviar7" min="0" max="99999999" value="   &#10004;   " onclick="validar7()">
+
+  </div>
+
+    <div  id="senhares7"></div>`
+
+    prepararCampos()
+    }
+
+
+    function validar1(){
+
+      if (senha[1].value === key1) {
+        senhares[1].classList.add('mensagens');
+        senhares[1].innerHTML = `
+        <h2>Dia 24: Um Dia Especial</h2> <br>
+	<p>
+    O dia em que nós nos conhecemos, definitivamente um dos mais especiais para o nosso relacionamento, afinal sem ele nós nunca teríamos nos conhecido, você não poderia estar lendo o que está lendo agora se Deus não nos guiasse, se eu não tivesse criado o servidor e se você não tivesse entrado nele. Foi uma ação conjunta, não mera 'sorte', até porque qualquer pessoa minimamente sensata entende que não existe isso de sorte, se assim foi é porque era para ser desta forma. Isso me lembra daquilo que você disse “E se eu não tivesse entrado no servidor” e eu escrevi pensando nisto também. Sou eternamente grato a Deus por colocar uma pessoa tão especial e incrível como você na minha vida. Eu entendo a razão de eu ter criado aquele servidor, não digo de razão inicial minha, até mesmo porque como eu já te disse eu não esperava que eu fosse encontrar o amor da minha vida, nem que fosse tão cedo. A razão principal é para que eu pudesse te encontrar, algo que ocorreu acredito que pouco mais de um ano da criação dele (deve ter sido criado em 2023 em agosto).
+    
+  </p4<p>
+    
+      Agora por termos nos conhecido no dia 24, todos os dias 24 que existem automaticamente se tornaram especial para nós, sempre é uma marca de mais um mês que nos conhecemos, que ainda estamos juntos graças a Deus. Cada dia 24 é um sinal de que vencemos mais um mês junto e que aguardamos o próximo, para vencermos ele também. Cada mês que passa nós estamos mais próximos de nos encontrar, de nos casar, e o tempo tem passado rápido, já faz mais de 1 ano e 6 meses que eu te conheço. Eu sou muito grato por todas as mensagens comemorando mais um mês que você já me enviou. Todas elas me deixaram felizes e evidenciam que você é muito fofinha. Eu agradeço o tempo que você gastou para escrevê-las para mim, eu me sinto especial e bem com as suas mensagens longas falando sobre nós, jamais seria algo que eu teria desprazer, inclusive já li muitas vezes novamente, e quando acabo chegando nelas, aquela felicidade logo vem.
+  </p>
+<p>Você desbloqueou a letra V!</p>`;
+        contadorgeral()
+      } 
+    }
+    function validar2(){
+      if (senha[2].value === key2) {
+        senhares[2].classList.add('mensagens');
+        senhares[2].innerHTML = `
+        <h2>01/04:  T. E. A. M. O.  </h2>
+        <p>Honestamente eu não tinha muita perspectiva de futuro, nem achava que me relacionaria assim com alguém. Mas desde quando me voltei mais para Deus e quando te encontrei, eu tenho melhorado e mudado da água para o vinho. Antigamente eu era uma pessoa mais fria, mais tímida e mais chata do que sou hoje, tinha até mesmo dificuldade para dizer que te amava e demonstrar afeto, por isso mesmo eu escrevi o “TE AMO” daquela forma usando as iniciais naquele dia. Porém, você arrombou a porta do meu coração e me mostrou e me tem mostrado coisas que eu jamais seria capaz de enxergar e sentir se não fosse você. Eu penso que deve ter sido bem difícil para você fazer isso, principalmente porque eu era bastante rude, por mais que não fosse a minha intenção, era a maneira que eu me comunicava, e até mesmo ainda cometo alguns erros desse tipo hoje em dia, e peço desculpas por eles. Você estava lá passando por inúmeras dificuldades, sentimentos ruins e eu estava dificultando as coisas.</p>
+	<p>Lembro das partidas de uno, foram todas divertidas, afinal com você a vida se torna melhor, as coisas se tornam divertida. Nós tinhamos um duelo em condição de igualdade, havia momentos que eu perdia um monte e outros que você também perdia um monte. Lembro inclusive de um dia ter tirado uma print só das minhas vitórias e falado que tinha ganhado 10 em sequência só para te zoar, foi bem engraçado. Eu ficava te irritando também spamando gifs que nem um esquizofrênico ou apenas usando com frequência, na maioria dos casos não tinham nada a ver com o assunto, apenas gifs que eu gostava mesmo. Também fazia piadas com a sua alturazinha te chamando de anã, rebaixada em toda oportunidade, minha pequeníssima. Lembro também que você ficava mudando o meu apelido aí eu fingia que alterava o seu só para você me mostrar. Eu também não gostava tanto da Maki, por preferir a Rika, por mais que ela tivesse morrido, eles possuiam um potencial como casal, mas eu passei a enxergá-los juntos com bons olhos.</p>
+<p>Você desbloqueou a letra A!</p>
+`;
+        contadorgeral()
+
+      } 
+    }
+    function validar3(){
+
+      if (senha[3].value === key3) {
+        senhares[3].classList.add('mensagens');
+        senhares[3].innerHTML = `
+        <h2>03/06: O Retorno Especial </h2>
+        <p>Amor, você tinha sumido por praticamente um mês, havia desaparecido no dia 7 de maio e retornado apenas no dia 3 de junho, um dia posterior ao meu aniversário. Eu havia pedido a Deus de presente de aniversário que você retornasse, e ele assim o permitiu, mas você retornou na madrugada do dia seguinte. Eu achei isso bem especial e fico feliz que ali não tenha sido o nosso fim e que Deus tenha nos ajudado novamente. Naquele momento eu já te amava, não conseguia ficar sem conversar com você, praticamente todos os dias nós conversavamos e sempre era muito bom e eu ficava feliz em poder conversar com você. Você já estava passando pela Leucemia, lutando em uma situação difícil, sendo forte como você é. Mas você havia enviado como sua última mensagem dizendo que agora poderia morrer feliz. No terceiro dia eu já estava mal e pensando nisso, em você, com saudades de conversar com você. Eu até comprei o cubo mágico, que você falou que me ensinaria a resolvê-lo mas acabou que isso nunca aconteceu, mas sempre que o vejo me recordo de você. Cada dia que se passava sem você era mais doloroso, mas eu ainda te enviava mensagem na esperança de você aparecer novamente. Mas tinha chegado um momento que as suas palavras de que agora poderia morrer feliz e a sua ausência haviam me pesado, e eu tinha cogitado a possibilidade de você ter morrido e isso realmente tinha me entristecido muito, eu realmente estava abalado ao ponto de ter chorado… Mas  graças a Deus, que me direcionou para o caminho certo, o caminho de confiar em você, acreditar que você ainda estava viva e que retornaria, esse era o meu dever, não era o momento de demonstrar fraqueza, mas sim força, a força necessária para passar por qualquer adversidade que apareça independente de qual seja. Foi nesse período que eu percebi o quão especial você era para mim, o quão difícil seria viver sem você, o quanto eu queria ficar perto de você. Lembro que eu até mesmo havia escrito num caderno que tenho até hoje que eu desejava te encontrar. Também lembro que você disse que não conhecia o meu ‘lado fofinho’, acabou conhecendo um lado meu que nem eu sabia que existia, quando eu tinha falado que eu ficaria muito mas muito muito feliz mesmo em conversar com você no meu aniversário, que você finalmente voltasse, que eu estava com saudades de você. Ainda mais a preocupação que você teve comigo, dizendo antes de sumir para que eu não esquecesse que você me amava, por precaução, você tendo a importância de me dizer sobre como estava e ainda me consolar, mostrando que você realmente se importava muito comigo. Eu sou muito grato por esses detalhes que eu por ser lerdo tendo a demorar para percebê-los. Não conseguiria viver sem você meu amor, eu te amo muito mesmo, muito obrigado por voltar!</p4>
+<p>Você desbloqueou a letra L!</p>
+`;
+        contadorgeral()
+      } 
+    }
+    function validar4(){
+
+      if (senha[4].value === key4) {
+        senhares[4].classList.add('mensagens');
+        senhares[4].innerHTML = `
+        <h2>08/06: Minha Sogrinha Favorita</h2>
+        <p>Oh esse dia foi muito especial e engraçado, eu ri demais. Quando a sua mãe viu uma notificação do 'Meu Corno Favorito' e quis conversar comigo, zoando que você tava namorando escondido dela. Você fez a escolha certa de passar o celular para ela amor, foi muito bom conversar com a minha sogrinha, só não acabei pedindo você para avisar ela que eu desencalharia você meu bem, mas faz parte né. Pior que eu acabei chamando ela de senhora por ser uma maneira respeitosa ao meu ver, algo que ela não gosta muito. Ela também mentindo falando que você falava muito de mim para ver se nós namorávamos mesmos foi engraçado, eu tinha estranhado um pouco mas não percebido isso de cara. Eu fiquei rindo muito naquele dia, simplesmente não dava, e no final das contas eu te desencalhei ;]</p><p>
+          
+          Ah eu queria mesmo ter visto você com vergonha naquela hora, tenho certeza que estaria muito fofinha.
+        </p>
+<p>
+  
+  Você desbloqueou a letra E!
+</p>`;
+        contadorgeral()
+      } 
+    }
+    function validar5(){
+
+      if (senha[5].value === key5) {
+        senhares[5].classList.add('mensagens');
+        senhares[5].innerHTML = `
+          <h2>12/06: Dia dos Namorados</h2>
+        	<p>Esse dia foi muito especial também amor, que bom que você pediu para namorarmos por um dia no dia dos namorados, foi a primeira vez que eu tive um dia assim. Ele teria sido perfeito se não fosse o incidente que aconteceu infelizmente no mesmo dia. Mas você também foi muito gentil e responsável em aceitar levar o Niel com você amorzinho, eu respeito e também admiro isto. Você sempre tem passado por muitas dificuldades e eu nunca consegui ajudar de fato como queria, eu queria poder ter te abraçado em cada um desses momentos de dificuldade, ter estado presente ali com você meu amor. Naquela época eu nem sabia como conversar direito com você amor, eu até lancei um 'diga-me' e ainda confundi achando que você tava falando da palavra que eu usei kkkkkkkk completamente intankável. Também teve eu sendo atacante 5 gols por segundo e as cantadas, a de bombeiro com a chama que não se apagará, a do beijo que eu demorei um tempão pra fazê-la, a do bombom. Esse dia foi tão importante para nós continuarmos o namoro que começou na brincadeira de um dia, vou finalizar essa parte com a mesma última mensagem que eu mandei naquele dia. Minha querida, lembre-se sembre de que eu te amo.</p>
+<p>Você desbloqueou a letra N!</p>`;
+        contadorgeral()
+      } 
+    }
+    function validar6(){
+
+      if (senha[6].value === key6) {
+        senhares[6].classList.add('mensagens');
+        senhares[6].innerHTML = `
+        <h2>25/07: Aniversario do Meu Amor</h2>
+        <p>Hoje é o seu dia, muito especial, espero que ele esteja indo muito bem, que você esteja se divertindo bastante nele e também comendo muita coisa gostosa. Infelizmente não conseguiremos passar esse dia juntos fisicamente, mas como você disse cada dia que passa é um dia mais próximo desse dia, e eu quero que ele chegue logo, esperar é bem difícil, realmente é difícil ter que ficar longe de você amor, mas quando nos encontrarmos, tenho certeza de que será recompensador. Eu desejo muitíssimas felicidades à você meu amor, que você viva muito bem e por muito tempo, com muita saúde. Para essas coisas é de suma importância que você se alimente bem e beba bastante água, cuide de sua saúde, não fique tomando remédios em excessos para que você viva bem sem ter que passar por mais problemas de saúde meu bem. Você também tem que tomar muito cuidado para não sair aprontando por aí, tomar muito cuidado mesmo, essas coisas aí de subir em pé de manga pode acabar machucando amor. Você também precisa seguir com os seus sonhos amor, continuar a faculdade que eu tenho certeza que você será uma ótima psicóloga, você pode contar comigo para o que for amorzinho, então não desista de seus sonhos nunca meu bem. Antes eu era uma pessoa mais fria, bem burro é claro, sem muita noção de como seria o meu futuro, mas graças a Deus e a você eu tenho melhorado consideravelmente. Você sabe que eu achava que não conseguiria encontrar alguém que eu pudesse dizer que amo assim, eu achava que ia morrer sozinho, se o meu eu do passado soubesse disso, com certeza ficaria bem surpreso e curioso sobre. Você é uma ótima mãe, você é a minha melhor e única amiga, você é a minha vida, meu neném, você é a minha namorada, minha esposa, minha mulher, em todas essas coisas você é perfeita e a melhor que eu poderia ter. Sua irmã tinha falado que você era chata te zoando (não acho), mas eu com certeza sou muito chato e agradeço você por me suportar. Você é simplesmente a pessoa mais especial do mundo para mim, eu quero continuar ao seu lado, seja na felicidade, na tristeza, na dor, na saúde, na doença, nos momentos bons, nos ruins também, quando tudo estiver ruim, quando tudo estiver bom, sempre, todos os dias com você querida, que caminhemos e vençamos a vida juntos, com um relacionamento guiado por Deus, seguindo o Seu caminho e fazendo a vontade dEle, um relacionamento verdadeiramente bíblico e exemplar. Não vejo a hora de te encontrar, te abraçar, te beijar, contigo casar! Desculpa também por te mandar tanto texto, acabei te botando para ler textão no seu aniversário, mas eu queria tentar fazer algo especial e diferente para você amor, relembrando de algumas coisas que aconteceram, achei que ficaria legal, mas não tenho tanto conhecimento para fazer algo tão tão legal assim, mas espero que tenha sido bom. Lembre-se sempre que eu te amo muito, você é muito importante para mim, o amor da minha vida. Meus parabéns, que o seu dia seja muito feliz, não só hoje, mas todos os dias, feliz aniversário!</p>
+
+<p>Você desbloqueou a letra C! Todas elas formam uma palavra especial, seu dever será formar essa palavra com as letras conseguidas de cada senha!</p>`;
+        contadorgeral()
+      } 
+    }
+    function validar7(){
+
+      if (senha[7].value === key7) {
+        senhares[7].classList.add('mensagens');
+        senhares[7].innerHTML = `
+        <h2>Saida do Hospital + Conversas</h2>
+
+        <h3>07/08: Saida do Hospital</h3>
+        <p>Amor, eu resolvi juntar 3 eventos neste, até porque este é o último dessas mensagens aqui. Uma das coisas que mais complicadas de se lidar tinha sido a sua saúde meu bem, você estava muito mal, principalmente por causa da Leucemia, algo do qual nós não temos controle, mas Deus felizmente tem sim. Eu tive medo de te perder e aquele momento foi muito difícil para mim, e principalmente para você amor, como todas as variadas coisas que aparecem para tentar te derrubar, mas graças a Deus nós conseguimos vencer aquilo. Não pude ser presente como queria e deveria, ainda tinha outros coisas piorando a situação, mas como disse anteriormente, passamos por cima do problema. Precisamos vencer dessa mesma forma os problemas que forem aparecer amor, juntos, fazendo a nossa parte e entregando à Deus, porque Ele tem poder sobre tudo e sabe o melhor para nós e assim o fará. Você é muito fofinha meu bem, eu achei muito fofo você ter feito um coração para cada 'eu te amo', quando você ainda estava no hospital lá. Você é perfeita e maravilhosa, eu nunca vou desistir de você meu amor. Esse dia foi muito importante em nosso relacionamento e representa mais uma vitória, vitória de um problema terrível que nos encheu de medo e tristeza, mas agora podemos olhar para o passado com um sorriso no rosto de termos sobrevivido, e ainda estarmos juntos, e que venhamos a estar sempre juntos. Aliás você tem se alimentado bem?? É muito importante e você sabe muito bem disso hein. Tem certeza que tá? Se não trate de dar um jeito, se você ficar se alimentando mal e não bebendo água, eu vou apertar sua bochecha com força hein.</p>
+
+        <h3>05/08 e 21/09: Niel e Francinete</h3>
+        <p>Agora temos dois eventos que foram próximos e semelhantes em certo nível e também foram bem especiais. O primeiro deles era quando você ainda estava no hospital, quando o Niel estava contigo e você ajudou ele a conversar comigo, foi uma conversa bem curta mas grandemente especial para mim, muito fofo ele mandando que me amava. Honestamente é bem triste tudo que acabou acontecendo com ele, tão novo e ter de experienciar tudo isso que tem vivido, com certeza não é para qualquer um, e eu acredito que para deixá-lo 100% bem será muito difícil, afinal é mais fácil destruir do que construir, mas é o que eu desejo e vou me empenhar para fazer, quero ser um bom pai presente para ele, por mais que não consiga fazer muita coisa agora, capaz de ajudar a cicatrizar essas feridas e trazer paz para ele. Também me deixa feliz que ele me vê com bons olhos e me aceitou como parte da família. Vocês dois são pessoas muito especiais para mim, são a minha família. O outro evento que também é importante foi quando eu falei com a minha cunhada, foi bem engraçado e divertido também. Ela é uma boa irmã, apesar de ter pegado 3080 coisas para você apanhar naquele dia, ela deseja o seu bem (por mais que ela te zoe muito no processo, faz parte) e isso é agradável. Ela também precisa relaxar que não vai precisar furar os olhos de ninguém no nosso casamento</p>
+<p>Você desbloqueou a letra E!</p>
+
+        ` ;
+        contadorgeral()
+      } 
+    }
+    
+
+    
+
+ 
+    
+    
+
+  </script>
+</body>
+</html>
